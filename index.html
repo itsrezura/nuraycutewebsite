@@ -1075,32 +1075,6 @@
       line-height: 1.35;
     }
 
-    .generator-bar {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      align-items: center;
-      gap: 18px;
-      margin-top: 30px;
-      padding-top: 28px;
-      border-top: 2px dashed rgba(104, 83, 127, .14);
-    }
-
-    .generated-caption {
-      min-height: 68px;
-      display: flex;
-      align-items: center;
-      margin: 0;
-      padding: 14px 18px;
-      border-radius: 18px;
-      background: #f4eeff;
-      color: #725b8c;
-      font-weight: 800;
-    }
-
-    .generated-caption.pop {
-      animation: message-pop .42s cubic-bezier(.2,.9,.2,1);
-    }
-
     .playground-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1934,7 +1908,6 @@
     }
 
     html[data-theme="dark"] .profile-icon,
-    html[data-theme="dark"] .generated-caption,
     html[data-theme="dark"] .score-pill {
       background: #352b43;
       color: #d9c8eb;
@@ -2301,10 +2274,6 @@
 
       .profile-list,
       .playground-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .generator-bar {
         grid-template-columns: 1fr;
       }
 
@@ -2812,10 +2781,6 @@
         </figure>
       </div>
 
-      <div class="generator-bar">
-        <button class="btn" id="memeButton" type="button" data-i18n="memes.button">Generate Random Nuray Meme</button>
-        <p class="generated-caption" id="memeCaption" aria-live="polite" data-i18n="memes.placeholder">Nothing here yet. Press the button.</p>
-      </div>
     </section>
 
     <section id="play" class="playground-grid reveal">
@@ -3103,20 +3068,7 @@
     "meme5.cap": "Average 2 AM conversation.",
     "meme6.alt": "A laughing cat with happy tears",
     "meme6.cap": "When the joke makes absolutely no sense but somehow it's still funny.",
-    "memes.button": "Generate Random Nuray Meme",
-    "memes.placeholder": "Nothing here yet. Press the button.",
-    "memeCaptions": [
-      "Nuray after saying “I'm going to sleep” and still being online 2 hours later.",
-      "Me opening a meme from Nuray with absolutely zero context.",
-      "Nuray when her mobile signal drops to one bar.",
-      "POV: someone looked at her snack for too long.",
-      "Average 2 AM conversation: no plot, excellent character development.",
-      "When the joke makes no sense, but the laugh is already unstoppable.",
-      "Nuray entering the chat with evidence nobody requested.",
-      "The face of someone who definitely did not press snooze six times.",
-      "When the group chat is quiet, so Nuray deploys one perfectly timed meme.",
-      "A normal conversation, approximately three seconds before chaos."
-    ],
+
     "mood.title": "What Cat Are You Today?",
     "mood.intro": "Very scientific. Do not argue with the result.",
     "mood.label": "today's verdict",
@@ -3943,15 +3895,6 @@
           activate(event);
         }
       });
-    });
-
-    q("#memeButton").addEventListener("click", function(event) {
-      const output = q("#memeCaption");
-      output.textContent = randomItem(tl("memeCaptions"));
-      retrigger(output, "pop");
-      const rect = event.currentTarget.getBoundingClientRect();
-      particleBurst(rect.left + rect.width / 2, rect.top, ["😂", "✦", "🐾"], 8);
-      playTone(610, .12, "triangle", .03);
     });
 
     q("#moodButton").addEventListener("click", function(event) {
